@@ -1,5 +1,6 @@
 package com.nttdata.account.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -21,13 +23,22 @@ public class Account {
     private String id;
     private double balance;
     private String accountNumber;
+    private String accountType;
+    private Customer customer;
+    //Feature of saving, current and fixed-term accounts
     private boolean maintenanceCommission;
     private boolean maximumMovementLimit;
     private Integer movementAmount;
-    private Customer customer;
     private List<Customer> customerOwner;
     private List<Customer> customerAuthorizedSigner;
-    private String status;
+    //Feature credit
+    private double amount;
+    private double payment;
+    //Feature credit card
+    private double consumption;
+    private double creditLine;
 
-    private Acquisition acquisition;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime creationDate = LocalDateTime.now();
+    private String status;
 }

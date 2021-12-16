@@ -4,10 +4,12 @@ import com.nttdata.account.model.entity.Account;
 import com.nttdata.account.model.entity.Customer;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public interface IAccountRepository extends ReactiveMongoRepository<Account, String> {
     Flux<Account> findAllByCustomerOwnerIn(List<Customer> customers);
     Flux<Account> findByCustomerDocumentNumber(String documentNumber);
+    Mono<Account> findByAccountNumber(String accountNumber);
 }

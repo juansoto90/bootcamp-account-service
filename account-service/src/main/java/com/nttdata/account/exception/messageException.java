@@ -1,0 +1,47 @@
+package com.nttdata.account.exception;
+
+public class messageException {
+    private String productType;
+    private String customerType;
+
+    public static String accountQuantityValidationMessage(String productType, String customerType){
+        if (customerType.equals("PERSONAL")){
+            if (productType.equals("SAVING_ACCOUNT"))
+                return "The client already has a savings account";
+            else if (productType.equals("CURRENT_ACCOUNT"))
+                return "The client already has a current account";
+            else
+                return "The client already has a fixed-term account";
+        }
+        else
+            if (productType.equals("SAVING_ACCOUNT"))
+                return "This customer cannot have a savings account";
+            else
+                return "This customer cannot have a fixed-term account";
+    }
+
+    public static String maximumHeadlinesMessage(String customerType){
+        if (customerType.equals("PERSONAL"))
+            return "Account must have a holder";
+        else
+            return "Account must have at least one owner";
+    }
+
+    public static String maximumAuthorizedSignersMessage(String customerType){
+        if (customerType.equals("PERSONAL"))
+            return "Authorized signers are not required";
+        else
+            return "";
+    }
+
+    public static String creditCardAmountMessage(){
+        return "You already have a credit card";
+    }
+
+    public static String creditAmountMessage(String customerType){
+        if (customerType.equals("PERSONAL"))
+            return "You already have an approved credit";
+        else
+            return "";
+    }
+}

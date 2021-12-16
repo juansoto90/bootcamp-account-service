@@ -12,9 +12,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class RouterConfig {
     @Bean
     public RouterFunction<ServerResponse> routes(AccountHandler handler){
-        return route(POST("/account"), handler::create)
+        return route(POST("/account/bank-account"), handler::bankAccountCreate)
+                .andRoute(POST("/account/credit-account"), handler::creditAccountCreate)
+                .andRoute(POST("/account/credit-card-account"), handler::creditCardAccountCreate)
                 .andRoute(GET("/account/{id}"), handler::findById)
                 .andRoute(POST("/account/customerowner"), handler::findAllByCustomerOwner)
-                .andRoute(GET("/account/customer/{documentNumber}"), handler::findByCustomerDocumentNumber);
+                .andRoute(GET("/account/customer/{documentNumber}"), handler::findByCustomerDocumentNumber)
+                .andRoute(GET("/account/account-number/{accountNumber}"), handler::findByAccountNumber)
+                .andRoute(POST("/account/update-amount"), handler::updateAmountAccount)
+                .andRoute(POST("/account/update-consumption"), handler::updateConsumptionAccount);
     }
 }

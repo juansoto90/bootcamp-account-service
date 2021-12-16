@@ -12,4 +12,6 @@ public interface IAccountService {
     public Mono<Account> findById(String id);
     public Flux<Account> findAllByCustomerOwnerIn(List<Customer> customers);
     public Flux<Account> findByCustomerDocumentNumber(String documentNumber);
+    public Mono<Account> findByAccountNumber(String accountNumber);
+    public Mono<Account> update(Account account);
 }

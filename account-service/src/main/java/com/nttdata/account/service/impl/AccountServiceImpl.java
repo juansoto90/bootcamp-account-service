@@ -39,4 +39,13 @@ public class AccountServiceImpl implements IAccountService {
         return repository.findByCustomerDocumentNumber(documentNumber);
     }
 
+    @Override
+    public Mono<Account> findByAccountNumber(String accountNumber) {
+        return repository.findByAccountNumber(accountNumber);
+    }
+
+    @Override
+    public Mono<Account> update(Account account) {
+        return repository.save(account);
+    }
 }
